@@ -1,0 +1,39 @@
+<!--
+  - ngIf: app-loading despues de 2000ms (2s).
+  - ngFor:  tabla de alumnos
+  - ngClass: pinta la fila de quienes tengas menos de 2 asistencias
+  - ngIf: muestra el dato de quienes se encuentren en el top ten
+  - Pipes: 
+
+
+-->
+
+<app-loading *ngIf="isLoading"></app-loading> 
+
+<div class="container-fluid">
+  <h1 class="mb-3">
+    Tabla de Alumnos - Asistencias hasta Clase 4
+  </h1>
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre completo</th> 
+        <th>E-mail</th>
+        <th>Asistencia</th>
+        <th>Top Ten</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let alumno of alumnos" [ngClass]="alumno.asistencia < 2 ? 'table-success':'' ">
+        
+        <td>{{alumno.id}}</td>
+        <td>{{alumno.firstName +' '+alumno.lastName}}</td>
+        <td>{{alumno.email}}</td>
+        <td>{{alumno.asistencia}}</td>
+        <td>  <div *ngIf="alumno.isTop10">Es top 10</div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
