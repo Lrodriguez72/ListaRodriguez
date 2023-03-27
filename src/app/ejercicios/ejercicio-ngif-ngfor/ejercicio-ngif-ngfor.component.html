@@ -3,36 +3,43 @@
   - ngFor:  tabla de alumnos
   - ngClass: pinta la fila de quienes tengas menos de 2 asistencias
   - ngIf: muestra el dato de quienes se encuentren en el top ten
-  - Pipes: 
-
-
+  - Pipes: nombre y apellido en uppercase
 -->
 
 <app-loading *ngIf="isLoading"></app-loading> 
 
 <div class="container-fluid">
-  <h1 class="mb-3">
-    Tabla de Alumnos - Asistencias hasta Clase 4
-  </h1>
-  <table class="table table-stripped">
+  <header>
+    <!-- Image and text -->
+<nav class="navbar navbar-light ">
+    <a class="navbar-brand" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+          </svg>
+          Tabla de Alumnos - Asistencias hasta Clase 4
+    </a>
+  </nav>
+</header>
+  
+  <table class="table table-stripped table-bordered">
     <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nombre completo</th> 
-        <th>E-mail</th>
-        <th>Asistencia</th>
-        <th>Top Ten</th>
+      <tr class="table-secondary">
+        <th style="text-align: center">Id</th>
+        <th style="text-align: center">Nombre completo</th> 
+        <th style="text-align: center">E-mail</th>
+        <th style="text-align: center">Asistencias</th>
+        <th style="text-align: center">Top Ten</th>
       </tr>
     </thead>
     <tbody>
       
-      <tr *ngFor="let alumno of alumnos" [ngClass]="alumno.asistencia < 2 ? 'table-success':'' ">
+      <tr *ngFor="let alumno of alumnos" [ngClass]="alumno.asistencia < 2 ? 'table-danger':'' ">
         
-        <td>{{alumno.id}}</td>
-        <td>{{alumno.firstName +' '+alumno.lastName}}</td>
-        <td>{{alumno.email}}</td>
-        <td>{{alumno.asistencia}}</td>
-        <td>  <div *ngIf="alumno.isTop10">Es top 10</div></td>
+        <td style="text-align: center">{{alumno.id}}</td>
+        <td style="text-align: center">{{alumno.firstName +' '+alumno.lastName | uppercase}}</td>
+        <td style="text-align: center">{{alumno.email}}</td>
+        <td style="text-align: center">{{alumno.asistencia}}</td>
+        <td style="text-align: center">  <div *ngIf="alumno.isTop10 ">Es top 10</div></td>
       </tr>
     </tbody>
   </table>

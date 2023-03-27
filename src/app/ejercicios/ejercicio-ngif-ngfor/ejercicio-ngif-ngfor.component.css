@@ -1,0 +1,5 @@
+header {
+    background-image: linear-gradient(to bottom right, rgb(29, 173, 240), rgb(26, 81, 144));
+    height: var(--toolbar-height);
+    padding-left: .5%;
+  }
